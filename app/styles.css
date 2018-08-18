@@ -1,0 +1,94 @@
+@import url('https://fonts.googleapis.com/css?family=Overpass+Mono');
+
+body {
+    font-family: 'Overpass Mono', monospace;
+    background-color: #008c8c;
+    background-image: url("https://www.transparenttextures.com/patterns/arches.png");
+}
+
+#app {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+#quiz-box {
+    background: linear-gradient(35deg, #CCFFFF, #FFCCCC);
+    min-width: 40%;
+    max-width: 80%;
+    min-height: 50%;
+    padding: 15px 20px 20px;
+    border-radius: 20px;
+    box-shadow: 0 10px 20px rgba(0,0,0,0.19), 0 6px 6px rgba(0,0,0,0.23);
+
+}
+
+.header {
+    display: flex;
+    justify-content: space-between;
+
+}
+
+.header h1, .header p {
+    margin: 0 0 20 0;
+    font-size: 36px;
+    font-weight: 400;
+}
+
+fieldset {
+    border: 2px solid green;
+    border-radius: 20px;
+}
+
+.question {
+    font-size: 22px;
+    font-weight:bold;
+}
+
+.answers {
+    display: flex;
+    flex-direction: column;
+    /* flex-flow: wrap; */
+    justify-content: space-between;
+}
+
+.answers input, .answers label {
+    cursor: pointer;
+}
+
+.buttons {
+    display: flex;
+    flex-direction: row-reverse;
+    justify-content: space-between;
+}
+
+button {
+    background: transparent;
+    border: 2px solid green;
+    border-radius: 5px;
+    box-shadow: 0px 2px 0px green;
+    letter-spacing: 1.5;
+    font-size: 16px;
+    color: green;
+    padding: 8px 10px;
+    margin: 10px 10px 0 0;
+    text-transform: uppercase;
+    text-align: center;
+    text-decoration: none;
+    transition: all 0.2s;
+}
+
+button:hover {
+    color: red;
+    border-color: red;
+    box-shadow: 0px 2px 0px red;
+}
+
+button:active {
+    /* background-color: black; */
+    box-shadow: 0px 1px 0px red;
+}
+
+#score-screen {
+
+}
