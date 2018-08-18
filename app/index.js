@@ -2,8 +2,6 @@ import React from 'react';
 import ReactDOM from 'react-dom';
 import './styles.css';
 
-// var App = require('.components/App');
-
 //questions. Simulate JSON object from API
 const questions = {
     "q1": {
@@ -110,6 +108,7 @@ class Quiz extends React.Component {
         let newTimeLeft = this.state.timeLeft;
         let page = this.state.currentPage;
 
+        //ends game if timer runs out
         if (this.state.totalSeconds == 1) {
             document.getElementById("beep").play();
             page = 6;
@@ -146,7 +145,7 @@ class Quiz extends React.Component {
     handleStart() {
         let name = document.getElementById('name').value;
         if(!name) {
-            alert("Please enter you name before starting");
+            alert("Please enter your name before starting");
             return;
         }
 
@@ -188,7 +187,7 @@ class Quiz extends React.Component {
 
     }
 
-    //function gets users answer, and question number
+    //function sets users answer
     handleChange(ans, questionNum) {
         //checks if users answer is correct
         if(questionNum === 1) {
@@ -271,14 +270,14 @@ class Quiz extends React.Component {
                     <h1>QUIZ</h1>
                     <p>{this.state.timeLeft}</p>
                 </div>
-                <audio id="beep" src="https://www.zapsplat.com/wp-content/uploads/2015/sound-effects-fork-media/fork_media_cartoon_bubbles_bubbling.mp3?_=3"></audio>
-                <StartPage page={this.state.currentPage} start={this.handleStart}/>
-                <QuestionOne page={this.state.currentPage} next={this.handleNext} handleChange={this.handleChange}/>
-                <QuestionTwo page={this.state.currentPage} next={this.handleNext} prev={this.handlePrev} handleChange={this.handleChange}/>
-                <QuestionThree page={this.state.currentPage} next={this.handleNext} prev={this.handlePrev} handleChange={this.handleChange}/>
-                <QuestionFour page={this.state.currentPage} next={this.handleNext} prev={this.handlePrev} handleChange={this.handleChange}/>
-                <QuestionFive page={this.state.currentPage} fin={this.handleFinish} prev={this.handlePrev} handleChange={this.handleChange}/>
-                <ScoreScreen page={this.state.currentPage} name={this.state.usersName} score={this.state.usersScore} reset={this.handleReset}/>
+                <audio id="beep" src="https://www.zapsplat.com/wp-content/uploads/2015/sound-effects-18146/zapsplat_transport_car_horn_single_beep_external_toyota_corolla_003_18247.mp3?_=4"></audio>
+                    <StartPage page={this.state.currentPage} start={this.handleStart}/>
+                    <QuestionOne page={this.state.currentPage} next={this.handleNext} handleChange={this.handleChange}/>
+                    <QuestionTwo page={this.state.currentPage} next={this.handleNext} prev={this.handlePrev} handleChange={this.handleChange}/>
+                    <QuestionThree page={this.state.currentPage} next={this.handleNext} prev={this.handlePrev} handleChange={this.handleChange}/>
+                    <QuestionFour page={this.state.currentPage} next={this.handleNext} prev={this.handlePrev} handleChange={this.handleChange}/>
+                    <QuestionFive page={this.state.currentPage} fin={this.handleFinish} prev={this.handlePrev} handleChange={this.handleChange}/>
+                    <ScoreScreen page={this.state.currentPage} name={this.state.usersName} score={this.state.usersScore} reset={this.handleReset}/>
             </div>
         )
     }
@@ -294,7 +293,7 @@ class StartPage extends React.Component {
             return null;
         }
         return(
-            <div>
+            <div className="questions-anim">
                 <p>You have 3 minutes to complete a quiz of 5 questions</p>
                 <p>Please enter your name and click 'Start' when you are ready to begin.</p>
                 <label>Name: <input type="text" id="name" /></label>
@@ -317,12 +316,12 @@ class QuestionOne extends React.Component {
 
         return(
             <div>
-                <fieldset>
-                    <legend className="question">Question 1: {questions.q1.question}</legend>
-                    <div className="answers">
-                        {questions.q1.options.map(x => <div><input className="answer" onChange={()=>this.props.handleChange(x, 1)} type="radio" name="q1" id={x} /> <label for={x}>{x}</label></div>)}
-                    </div>
-                </fieldset>
+                    <fieldset className="questions-anim">
+                        <legend className="question">Question 1: {questions.q1.question}</legend>
+                        <div className="answers">
+                            {questions.q1.options.map(x => <div key={x}><input className="answer" onChange={()=>this.props.handleChange(x, 1)} type="radio" name="q1" id={x} /> <label for={x}>{x}</label></div>)}
+                        </div>
+                    </fieldset>
                 <div className="buttons"><button onClick={()=>this.props.next(this.props.page)}>Next</button></div>
             </div>
         );
@@ -340,7 +339,7 @@ class QuestionTwo extends React.Component {
         console.log("on question: ", this.props.page);
         return(
             <div>
-                <fieldset>
+                <fieldset className="questions-anim">
                     <legend className="question">Question 2: {questions.q2.question}</legend>
                     <div className="answers">
                         {questions.q2.options.map(x => <div><input className="answer" onChange={()=>this.props.handleChange(x, 2)} type="radio" name="q2" id={x} /> <label for={x}>{x}</label></div>)}
@@ -366,7 +365,7 @@ class QuestionThree extends React.Component {
         console.log("on question: ", this.props.page);
         return(
             <div>
-                <fieldset>
+                <fieldset className="questions-anim">
                     <legend className="question">Question 3: {questions.q3.question}</legend>
                     <div className="answers">
                         {questions.q3.options.map(x => <div><input className="answer" onChange={()=>this.props.handleChange(x, 3)} type="radio" name="q3" id={x} /> <label for={x}>{x}</label></div>)}
@@ -392,7 +391,7 @@ class QuestionFour extends React.Component {
         console.log("on question: ", this.props.page);
         return(
             <div>
-                <fieldset>
+                <fieldset className="questions-anim">
                     <legend className="question">Question 4: {questions.q4.question}</legend>
                     <div className="answers">
                         {questions.q4.options.map(x => <div><input className="answer" onChange={()=>this.props.handleChange(x, 4)} type="radio" name="q4" id={x} /> <label for={x}>{x}</label></div>)}
@@ -418,7 +417,7 @@ class QuestionFive extends React.Component {
         console.log("on question: ", this.props.page);
         return(
             <div>
-                <fieldset>
+                <fieldset className="questions-anim">
                     <legend className="question">Question 5: {questions.q5.question}</legend>
                     <div className="answers">
                         {questions.q5.options.map(x => <div><input className="answer" onChange={()=>this.props.handleChange(x, 5)} type="radio" name="q5" id={x} /> <label for={x}>{x}</label></div>)}
@@ -442,11 +441,17 @@ class ScoreScreen extends React.Component {
             return null;
         }
         return(
-            <div id="score-screen">
-                <div>
-                    <label>{this.props.name}, You Scored: {this.props.score}</label>
-                    <p>High Scores:</p>
-                    {highScores.map(x => <p>Name: {x.name}, Score: {x.score}</p>)}
+            <div>
+                <div id="score-screen" className="questions-anim">
+                    <div className="user-score">
+                        <p className="title">{this.props.name}</p>
+                        <p>You finished with a score of: {this.props.score}</p>
+                    </div>
+                    <div></div>
+                    <div className="highscores">
+                        <p className="title">High Scores:</p>
+                        {highScores.map(x => <p>{x.name}, {x.score}</p>)}
+                    </div>
                 </div>
                 <div><button onClick={this.props.reset}>Reset</button></div>
             </div>

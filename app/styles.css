@@ -2,8 +2,9 @@
 
 body {
     font-family: 'Overpass Mono', monospace;
-    background-color: #008c8c;
-    background-image: url("https://www.transparenttextures.com/patterns/arches.png");
+    background-color: #8e9fbd;
+    background-image: url("https://www.transparenttextures.com/patterns/asfalt-light.png");
+    /* This is mostly intended for prototyping; please download the pattern and re-host for production environments. Thank you! */
 }
 
 #app {
@@ -90,5 +91,33 @@ button:active {
 }
 
 #score-screen {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+}
 
+.title {
+    font-size: 22px;
+    font-weight: 700;
+    text-transform: uppercase;
+}
+
+@keyframes fadeInOut {
+  0% {
+    opacity: 0;
+  }
+
+  45% {
+    opacity: 1;
+  }
+
+  100% {
+    opacity: 0%;
+  }
+}
+
+.questions-anim {
+  animation-name: fadeInOut;
+  animation-duration: 1.5s;
+  animation-fill-mode: both;
 }
